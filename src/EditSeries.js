@@ -25,16 +25,21 @@ class EditSeries extends Component {
 
     //
 	componentDidMount() {
+
 		this.setState({ isLoading: true })
+
         api
             .loadSeriesById(this.props.match.params.id)
             .then((res) => {
-                this.setState({ series: res.data })
-                this.refs.name.value = this.state.series.name
-                this.refs.genre.value = this.state.series.genre
-                this.refs.comments.value = this.state.series.comments
-                this.refs.status.value = this.state.series.status
+                // this.setState({ series: res.data })
+                this.refs.name.value = res.data.name
+                this.refs.comments.value =  res.data.comments
+                this.refs.status.value =  res.data.status
+                setTimeout(() => {
+                    this.refs.genre.value =  res.data.genre
+                }, 500)
             })
+
 		api
             .loadGenres()
 			.then((res) => {
@@ -46,15 +51,17 @@ class EditSeries extends Component {
 	}
 
     saveSeries() {
-        const newSeries = {
+
+        const serie = {
             id: this.props.match.params.id,
             name: this.refs.name.value,
             status: this.refs.status.value,
             genre: this.refs.genre.value,
             comments: this.refs.comments.value
         }
+
         api
-            .updateSeries(newSeries)
+            .updateSeries(serie)
             .then((res) => {
                 this.setState({
                     redirect: `/series/${this.refs.genre.value}`
@@ -68,11 +75,10 @@ class EditSeries extends Component {
             <section className="intro-section">
                 {
                     this.state.redirect &&
-                    <Redirect to={this.state.redirect} />
+                    <Redirect to={ this.state.redirect } />
                 }
                 <div className="container text-left">
-                    <h1>Edit Serie</h1>
-                    <p>{ JSON.stringify(this.state) }</p>
+                    <h1>Edit Series</h1>
                     <form>
                         <div className="form-group">
                             <label className="control-label">Name: </label>
@@ -98,7 +104,7 @@ class EditSeries extends Component {
                                         .state
                                         .genres
                                         .map(
-                                            key => <option key={ key } value={ key }>{ key }</option>
+                                            (key) => <option key={ key } value={ key }>{ key }</option>
                                         )
                                 }
                             </select>

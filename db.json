@@ -1,13 +1,5 @@
 {
-  "series": [
-    {
-      "id": 1,
-      "name": "Friends 2 ",
-      "status": "watching",
-      "genre": "Comedy",
-      "comments": "Best serie everrrrr"
-    }
-  ],
+  "series": [],
   "genres": [
     "Comedy",
     "Drama",

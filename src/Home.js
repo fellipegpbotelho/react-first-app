@@ -45,20 +45,20 @@ class Home extends Component {
                       </div>
                     </div>
                   </div>
-                </section>
-
-                <section>
-                  {
-                      this.state.isLoading &&
-                      <span>Aguarde, carregando...</span>
-                  }
-                  {
-                      ! this.state.isLoading &&
-                      <div>
-                          <strong>Ver séries do gênero: </strong>
-                          { this.state.genres.map(this.renderGenreLink) }
-                      </div>
-                  }
+                  <br />
+				  <section>
+                    {
+                        this.state.isLoading &&
+                        <span>Aguarde, carregando...</span>
+                    }
+                    {
+                        ! this.state.isLoading &&
+                        <div>
+                            <strong>Ver séries do gênero: </strong>
+                            { this.state.genres.map(this.renderGenreLink) }
+                        </div>
+                    }
+                  </section>
                 </section>
             </div>
         )

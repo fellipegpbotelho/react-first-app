@@ -87,7 +87,10 @@ class Series extends Component {
                         }
                         {
                             ! this.state.isLoading && this.state.series.length === 0 &&
-                            <div className="alert alert-warning">Nenhuma série cadastrada...</div>
+                            <div className="alert alert-warning">
+                                Nenhuma série cadastrada... &nbsp;
+                                <Link to={ "/new" }>New Series</Link>
+                            </div>
                         }
                         {
                             ! this.state.isLoading &&
